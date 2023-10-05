@@ -16,7 +16,8 @@
       <app-input label="Phone" name="phone" [(model)]="phoneFilterQuery" placeholder="+1 (111) 111..."></app-input>
     </div>
     <div class="filters__col">
-      <app-autocomplete label="Groups" name="groups" [options]="uniqueGroups" placeholder="Pick one" (modelChange)="getGroupSelection($event)"></app-autocomplete>
+      <app-autocomplete label="Groups" name="groups" [options]="uniqueGroups" placeholder="Pick one"
+                        (modelChange)="getGroupSelection($event)"></app-autocomplete>
     </div>
   </div>
 </div>

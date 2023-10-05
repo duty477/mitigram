@@ -75,6 +75,7 @@ export class AddressBookPage implements OnInit {
       this.users.forEach((user: User) => {
         user.selected = false;
       });
+      this.userService.setSelectAll(false);
     });
   }
 

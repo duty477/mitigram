@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, of, throwError} from "rxjs";
+import {BehaviorSubject, Observable, of, throwError} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {User} from "../models/user.model";
 
@@ -8,6 +8,8 @@ import {User} from "../models/user.model";
 })
 export class UserService {
   private usersUrl = 'assets/data/users.json';
+  private selectAllSubject = new BehaviorSubject<boolean>(false);
+  selectAll$ = this.selectAllSubject.asObservable();
 
   constructor(private http: HttpClient) {
   }
@@ -69,6 +71,10 @@ export class UserService {
     } catch (error) {
       return throwError(() => error)
     }
+  }
+
+  setSelectAll(selectAll: boolean): void {
+    this.selectAllSubject.next(selectAll);
   }
 
   private userExists(user: User, existingUsers: User[]): boolean {

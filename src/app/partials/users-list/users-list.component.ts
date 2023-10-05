@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, Output, SimpleChanges} from '@angular/core';
 import {User} from "../../models/user.model";
 import {fadeInOutAnimation} from "../../utils/animations";
+import {FilterUsersPipe} from "../../pipes/filter-users.pipe";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-users-list',
@@ -11,8 +13,8 @@ import {fadeInOutAnimation} from "../../utils/animations";
 export class UsersListComponent {
   @Input() users: User[] = [];
   @Output() selectedUsers: EventEmitter<User[]> = new EventEmitter<User[]>(); //emits selected users
+  selectAll: boolean = false;
   uniqueGroups: string[] = [];
-  selectAll = false;
   nameFilterQuery = '';
   lastNameFilterQuery = '';
   phoneFilterQuery = '';
@@ -35,6 +37,12 @@ export class UsersListComponent {
     const nameB = `${b.name.first} ${b.name.last}`.toLowerCase();
     return this.sortByName.asc ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
   });
+
+  constructor(private filterUsers: FilterUsersPipe, private userService: UserService) {
+    this.userService.selectAll$.subscribe((selectAll: boolean) => {
+      this.selectAll = selectAll;
+    });
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['users'] && changes['users'].currentValue) {
@@ -68,7 +76,16 @@ export class UsersListComponent {
   }
 
   selectAllUsers(): void {
-    this.users.forEach((user: User) => {
+    const filteredAndSortedUsers = this.filterUsers.transform(
+      this.users,
+      this.nameFilterQuery,
+      this.lastNameFilterQuery,
+      this.emailFilterQuery,
+      this.phoneFilterQuery,
+      this.groupsFilterQuery,
+      this.sortFunction
+    );
+    filteredAndSortedUsers.forEach((user: User) => {
       user.selected = this.selectAll;
     });
     this.emitSelectedUsers();
@@ -125,6 +142,9 @@ export class UsersListComponent {
 
   ///events
   getGroupSelection(event: string): void {
+    if (event === '' && this.selectAll) {
+      this.selectAll = false;
+    }
     this.groupsFilterQuery = event;
   }
 }

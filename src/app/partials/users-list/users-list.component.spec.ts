@@ -42,7 +42,7 @@ describe('UsersListComponent', () => {
     TestBed.configureTestingModule({
       declarations: [UsersListComponent, TestHostComponent, InputComponent, AutocompleteComponent, FilterUsersPipe, CheckboxComponent],
       imports: [MatAutocompleteModule, HttpClientModule, SvgIconComponent, BrowserAnimationsModule, FormsModule, ReactiveFormsModule],
-      providers: [provideAngularSvgIcon()]
+      providers: [provideAngularSvgIcon(), FilterUsersPipe]
     });
     fixture = TestBed.createComponent(TestHostComponent);
     testHost = fixture.componentInstance;

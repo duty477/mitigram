@@ -74,7 +74,7 @@ const playerFactory = () => player;
     MatAutocompleteModule,
     MatInputModule
   ],
-  providers: [],
+  providers: [FilterUsersPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {
