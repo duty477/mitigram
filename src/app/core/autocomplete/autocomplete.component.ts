@@ -17,7 +17,7 @@ export class AutocompleteComponent {
   filteredOptions$?: Observable<string[]>;
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['options'] && !changes['options'].firstChange) {
+    if (changes['options']) {
       this.filteredOptions$ = this.control.valueChanges.pipe(
         startWith(''),
         map(value => this._filter(value || '')),

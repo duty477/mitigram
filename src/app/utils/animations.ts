@@ -21,6 +21,16 @@ export const fadeInOutAnimation: AnimationTriggerMetadata = trigger('fadeInOut',
   ]),
 ]);
 
+export const menuAnimation: AnimationTriggerMetadata = trigger('menuAnimation', [
+  transition(':enter', [
+    style({opacity: 0}),
+    animate('0.6s ease-in-out', style({opacity: 1})),
+  ]),
+  transition(':leave', [
+    animate('0.2s ease-in-out', style({opacity: 0}))
+  ]),
+]);
+
 export const fadeOutAnimation: AnimationTriggerMetadata = trigger('fadeOut', [
   transition(':leave', [
     animate('0.4s ease-in-out', style({opacity: 0}))
@@ -39,41 +49,56 @@ export const listAnimation: AnimationTriggerMetadata = trigger('list', [
 ]);
 
 ///route animations
-const resetRoute = [
-  style({position: 'relative'}),
-  query(
-    ':enter, :leave',
-    [
-      style({
-        position: 'fixed', // using absolute makes the scroll get stuck in the previous page's scroll position on the new page
-        top: 0, // adjust this if you have a header so it factors in the height and not cause the router outlet to jump as it animates
-        left: 0,
-        width: '100%',
-        opacity: 0,
-      }),
-    ],
-    {optional: true}
-  ),
-];
-
-// Fade Animation
-export const routeFadeAnimation: AnimationTriggerMetadata = trigger('routeFadeAnimation', [
-  transition('* => *', [
-    ...resetRoute,
-    query(':enter', [style({opacity: 0})], {
-      optional: true,
-    }),
+export const routerAnimations: AnimationTriggerMetadata = trigger('routeAnimations', [
+  transition('Home => *', [
+    query(':enter, :leave',
+      style({position: 'fixed', width: '100%'}),
+      {optional: true}),
     group([
-      query(
-        ':leave',
-        [style({opacity: 1}), animate('0.3s', style({opacity: 0}))],
-        {optional: true}
-      ),
-      query(
-        ':enter',
-        [style({opacity: 0}), animate('1s', style({opacity: 1}))],
-        {optional: true}
-      ),
-    ]),
+      query(':enter', [
+        style({opacity: 0, transform: 'translateX(100px)'}),
+        animate('0.6s ease-in-out',
+          style({opacity: 1, transform: 'translateY(0)'}))
+      ], {optional: true}),
+      query(':leave', [
+        style({opacity: 1}),
+        animate('0.2s ease-in-out',
+          style({opacity: 0}))
+      ], {optional: true}),
+    ])
+  ]),
+  transition('* => Home', [
+    query(':enter, :leave',
+      style({position: 'fixed', width: '100%'}),
+      {optional: true}),
+    group([
+      query(':enter', [
+        style({opacity: 0}),
+        animate('0.6s ease-in-out',
+          style({opacity: 1}))
+      ], {optional: true}),
+      query(':leave', [
+        style({opacity: 1}),
+        animate('0.2s ease-in-out',
+          style({opacity: 0}))
+      ], {optional: true}),
+    ])
+  ]),
+  transition('* => *', [
+    query(':enter, :leave',
+      style({position: 'fixed', width: '100%'}),
+      {optional: true}),
+    group([
+      query(':enter', [
+        style({opacity: 0, transform: 'translateX(100px)'}),
+        animate('0.4s ease-in-out',
+          style({opacity: 1, transform: 'translateX(0)'}))
+      ], {optional: true}),
+      query(':leave', [
+        style({opacity: 1, transform: 'translateX(0)'}),
+        animate('0.3s ease-in-out',
+          style({opacity: 0, transform: 'translateX(-100px)'}))
+      ], {optional: true}),
+    ])
   ]),
 ]);

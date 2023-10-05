@@ -13,7 +13,6 @@ import vertexShaderPoints from '../../utils/glsl/points/vertex.glsl';
 })
 export class HomePage implements AfterViewInit {
   @ViewChild('rendererWrapper') rendererWrapper?: ElementRef;
-  private aspect = window.innerWidth / window.innerHeight;
   private scene: THREE.Scene = new THREE.Scene;
   private camera: THREE.OrthographicCamera = new THREE.OrthographicCamera(-0.5, 0.5, 0.5, -0.5, -1000, 1000);
   private renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer({
@@ -191,17 +190,18 @@ export class HomePage implements AfterViewInit {
 
   ///events
   @HostListener('window:resize') onResize(): void {
-    this.aspect = window.innerWidth / window.innerHeight;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(window.innerWidth, window.innerHeight);
   }
 
   ngOnDestroy(): void {
-    if (this.rafID) {
-      cancelAnimationFrame(this.rafID);
-      this.rafID = undefined;
-    }
-    this.renderer.dispose();
-    this.renderer.forceContextLoss();
+    setTimeout(() => {
+      if (this.rafID) {
+        cancelAnimationFrame(this.rafID);
+        this.rafID = undefined;
+      }
+      this.renderer.dispose();
+      this.renderer.forceContextLoss();
+    }, 300); ///Wait for the animation to finish
   }
 }

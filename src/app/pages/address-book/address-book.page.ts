@@ -97,7 +97,7 @@ export class AddressBookPage implements OnInit {
 
   addNewUsers(): void {
     this.emailsListModalService.openNewUsersModal(this.newUsersModalData).then((emails: boolean | string[]) => {
-      if(Array.isArray(emails)) {
+      if(Array.isArray(emails)){
         this.emailsListModalService.openEmailsListModal({
           title: 'Selected users',
           message: 'Please confirm the following users to continue',

@@ -37,7 +37,7 @@ export class NewUsersModalComponent {
   }
 
   submit(form: NgForm): void {
-    if (form.valid) {
+    if (form.valid && this.emailsList.length) {
       this.dialogRef.close(this.emailsList);
     }
   }

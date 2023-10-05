@@ -33,6 +33,7 @@ import {ToggleBtnComponent} from './core/toggle-btn/toggle-btn.component';
 import {AutocompleteComponent} from "./core/autocomplete/autocomplete.component";
 import {NewUsersModalComponent} from './partials/new-users-modal/new-users-modal.component';
 import {HomePage} from './pages/home/home.page';
+import {provideRouter} from "@angular/router";
 
 const playerFactory = () => player;
 

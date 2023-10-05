@@ -6,12 +6,12 @@ import {InvitationsPage} from "./pages/invitations/invitations.page";
 import {HomePage} from "./pages/home/home.page";
 
 const routes: Routes = [
-  {path: 'address-book', component: AddressBookPage, data: {animation: 'Page'}},
-  {path: 'invitations', component: InvitationsPage, data: {animation: 'Page'}},
-  {path: 'dashboard', component: DashboardPage, data: {animation: 'Page'}},
-  {path: '', component: HomePage, data: {animation: 'Page'}},
-  {path: 'home', redirectTo: '', data: {animation: 'Page'}},
-  {path: '**', redirectTo: '', data: {animation: 'Page'}}
+  {path: 'address-book', component: AddressBookPage, data: {animation: 'Address book'}},
+  {path: 'invitations', component: InvitationsPage, data: {animation: 'Invitations'}},
+  {path: 'dashboard', component: DashboardPage, data: {animation: 'Dashboard'}},
+  {path: '', component: HomePage, data: {animation: 'Home'}},
+  {path: 'home', redirectTo: '', data: {animation: 'Home'}},
+  {path: '**', redirectTo: '', data: {animation: 'Home'}}
 ];
 
 @NgModule({
