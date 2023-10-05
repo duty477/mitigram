@@ -4,12 +4,12 @@ This is an Angular project called Mitigram, which consists of various components
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.4.
 
-##Clone the Repository:
+## Clone the Repository:
 
 `git clone <repository-url>`
 `cd mitigram`
 
-##Install Dependencies:
+## Install Dependencies:
 
 Use npm or yarn to install the project dependencies:
 
