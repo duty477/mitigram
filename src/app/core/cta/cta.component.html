@@ -1,0 +1,4 @@
+<a class="cta" *ngIf="menu" [routerLink]="menu.url" [class.cta--active]="active">
+  <svg-icon *ngIf="menu.icon" [src]="menu.icon"></svg-icon>
+  <span class="cta__label">{{menu.text}}</span>
+</a>

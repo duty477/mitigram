@@ -1,0 +1,73 @@
+@use "src/assets/css/mixins/mixins" as *;
+
+:host {
+  display: inline-flex;
+  &.mw {
+    .btn {
+      width: 100%;
+    }
+  }
+}
+
+.btn {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: var(--border-radius);
+  border: 2px solid var(--color-primary);
+  background-color: var(--color-primary);
+  color: var(--color-primary-white);
+  font-size: 1em;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+  user-select: none;
+  max-width: 100%;
+  $self: &;
+  @include hover {
+    background-color: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+  }
+  &--secondary {
+    border-color: var(--color-primary-black);
+    background-color: var(--color-primary-white);
+    color: var(--color-primary-black);
+    @include hover {
+      background-color: var(--color-primary-black-30);
+      border-color: var(--color-primary-black-30);
+    }
+  }
+  &--shadow {
+    box-shadow: var(--box-shadow-primary);
+  }
+  &--delete {
+    background-color: var(--color-primary-red);
+    border-color: var(--color-primary-red);
+    @include hover {
+      background-color: var(--color-primary-red-hover);
+      border-color: var(--color-primary-red-hover);
+    }
+  }
+  &--white {
+    border-color: var(--color-primary-white);
+    background-color: var(--color-primary-white);
+    color: var(--color-bg-menu);
+    @include hover {
+      color: var(--color-primary-white);
+      background-color: var(--color-primary-hover);
+      border-color: var(--color-primary-hover);
+    }
+  }
+  &[disabled] {
+    cursor: not-allowed;
+    color: var(--color-grey);
+    background-color: var(--color-primary-white);
+    border-color: var(--color-bg-grey);
+    #{$self}--secondary {
+      color: var(--color-grey);
+      background-color: transparent;
+      border-color: var(--color-bg-grey);
+    }
+  }
+}

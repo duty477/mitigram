@@ -1,0 +1,90 @@
+@mixin hover {
+  @media screen and (min-width: 1025px) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin anim($offset: 0s,$time: 0.3s, $el: all) {
+  transition: $el $time ease-in-out $offset;
+}
+
+@mixin media_to($width: 1199px) {
+  @media screen and (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin media_from($min: 1025px) {
+  @media screen and (min-width: $min) {
+    @content;
+  }
+}
+
+@mixin media_from_to($min: 1025px, $max: 1199px) {
+  @media screen and (min-width: $min) and (max-width: $max) {
+    @content;
+  }
+}
+
+@mixin media_sm {
+  @media screen and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin media_to_sm {
+  @media screen and (min-width: 1025px) {
+    @content;
+  }
+}
+
+@mixin media_only_sm {
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin media_xs {
+  @media screen and (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin media_to_xs {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+$all-text-inputs: 'input[type="color"]',
+'input[type="date"]',
+'input[type="datetime"]',
+'input[type="datetime-local"]',
+'input[type="email"]',
+'input[type="month"]',
+'input[type="number"]',
+'input[type="password"]',
+'input[type="search"]',
+'input[type="tel"]',
+'input[type="text"]',
+'input[type="time"]',
+'input[type="url"]',
+'input[type="week"]',
+'input:not([type])',
+'textarea';
+@function px_vw($px: 5) {
+  $dynamic_size: calc(($px*100)/1440) * 1vw;
+  @return $dynamic_size;
+}
+
+@mixin font_size($current: 16, $min: 12, $width_change: 1024) {
+  $dynamic_size: px_vw($current);
+  @include media_from(($width_change + 1)*1px) {
+    font-size: $dynamic_size;
+  }
+  @include media_to($width_change*1px) {
+    font-size: $min * 1px;
+  }
+}

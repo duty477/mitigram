@@ -1,0 +1,11 @@
+<div class="modal-content">
+  <h3>{{data.title}}</h3>
+  <p>{{data.message}}</p>
+  <ul>
+    <li *ngFor="let email of data.emails">{{ email }}</li>
+  </ul>
+  <div class="modal-content__actions">
+    <app-button *ngIf="!data.disabledSubmitBtn" label="Submit" (click)="submit()"></app-button>
+    <app-button [label]="data.disabledSubmitBtn ? 'OK' : 'Cancel'" (click)="cancel()" [modifier]="data.disabledSubmitBtn ? '' : 'btn--secondary'"></app-button>
+  </div>
+</div>

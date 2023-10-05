@@ -1,0 +1,14 @@
+<div class="page">
+  <div class="container page__row">
+    <div class="page__header">
+      <h1>Invitations</h1>
+    </div>
+    <div class="page__actions">
+      <app-button [isButton]="false" label="Add new contractors" url="/address-book" modifier="btn--shadow"></app-button>
+      <app-button label="Delete contractors" modifier="btn--delete btn--shadow" (click)="deleteUsers()"></app-button>
+    </div>
+    <div class="page__content">
+      <app-users-list [users]="users" (selectedUsers)="getSelectedUsers($event)"></app-users-list>
+    </div>
+  </div>
+</div>

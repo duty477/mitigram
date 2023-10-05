@@ -1,0 +1,14 @@
+<label class="checkbox" [ngClass]="modifier" [class.disabled]="isDisabled" [class.readonly]="isReadOnly">
+  <input
+    type="checkbox"
+    [(ngModel)]="model"
+    (ngModelChange)="change($event)"
+    [disabled]="isDisabled"
+    [readonly]="isReadOnly" >
+  <span class="checkbox__mark_wrap">
+        <span class="checkbox__mark">
+            <svg-icon src="assets/svg/checkbox.svg"></svg-icon>
+        </span>
+        <span class="checkbox__label" *ngIf="label">{{ label }}</span>
+    </span>
+</label>

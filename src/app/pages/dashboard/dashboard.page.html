@@ -1,0 +1,47 @@
+<div class="page dashboard">
+  <div class="container page__row">
+    <div class="dashboard__header">
+      <h1>Dashboard</h1>
+      <p>Welcome <b>{{name}}</b></p>
+    </div>
+    <div class="page__actions">
+      <app-button [isButton]="false" label="Add new contractors" url="/address-book"
+                  modifier="btn--shadow"></app-button>
+      <app-button [isButton]="false" label="View all invitations" url="/invitations"
+                  modifier="btn--shadow"></app-button>
+    </div>
+    <div class="page__content">
+      <div class="dashboard__box">
+        <div class="dashboard__box__header">
+          <div class="dashboard__box__header__left">
+            <h2>Notifications</h2>
+            <p>You have <b>{{notifications.length}}</b> new notifications</p>
+          </div>
+        </div>
+        <div class="dashboard__box__content">
+          <swiper *ngIf="notifications.length" [config]="swiperConfig">
+            <ng-template swiperSlide *ngFor="let notification of notifications;">
+              <app-notification [notification]="notification"></app-notification>
+            </ng-template>
+          </swiper>
+          <app-empty-list *ngIf="!notifications.length" modifier="empty-list--small"
+                          label="You have no notifications"></app-empty-list>
+        </div>
+      </div>
+      <div class="dashboard__box">
+        <div class="dashboard__box__header">
+          <div class="dashboard__box__header__left">
+            <h2>Invitations</h2>
+            <p>Check your latest contractors</p>
+          </div>
+        </div>
+        <div class="dashboard__box__content">
+          <div class="dashboard__box__list" *ngIf="contractors.length">
+            <app-users-short-list [contractors]="contractors.slice(-5).reverse()"></app-users-short-list>
+          </div>
+          <app-empty-list *ngIf="!contractors.length" modifier="empty-list--small"></app-empty-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

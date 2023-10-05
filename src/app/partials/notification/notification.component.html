@@ -1,0 +1,8 @@
+<div class="notification" *ngIf="notification">
+  <div class="notification__icon">
+    <svg-icon src="assets/svg/notifications.svg"></svg-icon>
+  </div>
+  <h3>{{notification.header}}</h3>
+  <p>{{notification.body}}</p>
+  <app-button label="Archive"></app-button>
+</div>

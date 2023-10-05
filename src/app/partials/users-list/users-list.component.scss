@@ -1,0 +1,130 @@
+@use "src/assets/css/mixins/mixins" as *;
+
+:host {
+  display: block;
+}
+
+.filters {
+  background-color: var(--color-bg-grey);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-primary);
+  padding: 20px;
+  margin-bottom: 30px;
+  &__row {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: calc(100% + 20px);
+    margin-left: -10px;
+  }
+  &__col {
+    flex: 1;
+    flex-basis: 150px;
+    padding: 0 10px 10px;
+  }
+  h2 {
+    margin-bottom: 0.5em;
+  }
+}
+
+.table-wrap {
+  position: relative;
+}
+
+.table {
+  background-color: var(--color-bg-grey);
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-primary);
+}
+
+table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+
+  thead {
+    background-color: var(--color-bg-menu);
+    color: var(--color-menu-labels);
+    text-align: left;
+  }
+
+  th, td {
+    padding: 10px;
+    &:first-child {
+      padding-left: 20px;
+    }
+    &:last-child {
+      padding-right: 20px;
+    }
+  }
+
+  th {
+    font-size: 1.3em;
+    font-weight: 500;
+    height: 60px;
+  }
+
+  td {
+    font-size: 1.2em;
+    font-weight: 400;
+    height: 50px;
+  }
+
+  tbody {
+    tr {
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+      border-bottom: 1px solid var(--color-primary-black-30);
+
+      &:last-child {
+        td {
+          border-bottom: none;
+        }
+      }
+
+      @include hover {
+        background-color: var(--color-primary-hover-20);
+      }
+
+      &.active {
+        background-color: var(--color-primary-hover-20);
+      }
+    }
+  }
+
+  .phone {
+    white-space: nowrap;
+  }
+
+  .sort {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .sort-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    svg-icon {
+      margin: 4px 0 0 4px;
+    }
+
+    svg {
+      fill: var(--color-menu-labels);
+    }
+  }
+}
+
+@include media_to(1440px) {
+  table {
+    th {
+      font-size: 1.1em;
+    }
+
+    td {
+      font-size: 1em;
+    }
+  }
+}

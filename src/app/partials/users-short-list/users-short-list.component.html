@@ -1,0 +1,24 @@
+<table *ngIf="contractors.length">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Company</th>
+    <th>E-mail</th>
+    <th>Phone</th>
+    <th>Groups</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of contractors">
+    <td class="name">{{user.name.first}}<br/>{{user.name.last}}</td>
+    <td class="company">{{user.company}}</td>
+    <td class="email">{{user.email}}</td>
+    <td class="phone">{{user.phone}}</td>
+    <td class="groups">
+      <ul>
+        <li *ngFor="let group of user.groups">{{group}}</li>
+      </ul>
+    </td>
+  </tr>
+  </tbody>
+</table>

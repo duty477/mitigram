@@ -1,0 +1,69 @@
+@use "/src/assets/css/mixins/mixins"as *;
+
+:host {
+  display: block;
+}
+
+.checkbox {
+  padding-left: 0;
+  display: flex;
+  align-items: center;
+  $self: &;
+
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+
+    .mark_wrap .mark {
+      cursor: not-allowed;
+    }
+  }
+
+  &.readonly {
+    opacity: 0.5;
+  }
+
+  input {
+    display: none;
+
+    &:checked + #{$self}__mark_wrap {
+      #{$self}__mark {
+        background-color: var(--color-primary);
+      }
+      svg-icon {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__mark_wrap {
+    display: flex;
+    align-items: center;
+
+    svg-icon {
+      width: 10px;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    svg {
+      fill: var(--color-primary-white);
+    }
+  }
+
+  &__mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--color-primary);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+
+  &__label {
+    margin-right: 10px;
+  }
+}

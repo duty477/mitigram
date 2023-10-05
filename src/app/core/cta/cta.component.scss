@@ -1,0 +1,59 @@
+@use "src/assets/css/mixins/mixins" as *;
+
+.cta {
+  color: var(--color-primary-white);
+  background-color: var(--color-menu-haightlight);
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  padding: 10px;
+  border-radius: 10px;
+  transition: opacity 0.3s ease-in-out;
+  svg-icon {
+    width: 35px;
+    height: 35px;
+  }
+  svg {
+    height: 100%;
+  }
+  path {
+    fill: var(--color-primary-white);
+    transition: fill 0.3s ease-in-out;
+  }
+  &__label {
+    color: var(--color-menu-labels);
+    background-color: var(--color-menu-haightlight);
+    position: absolute;
+    left: calc(100% + 30px);
+    top: 50%;
+    transform: translate(-10px, -50%);
+    border-radius: var(--border-radius);
+    font-size: 0.8em;
+    padding: 10px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    box-shadow: var(--box-shadow-primary);
+    transition: all 0.3s ease-in-out;
+  }
+  @include hover {
+    background-color: var(--color-primary-white);
+    path {
+      fill: var(--color-menu-haightlight);
+    }
+    .cta__label {
+      opacity: 1;
+      transform: translate(0, -50%);
+    }
+  }
+  &--active {
+    background-color: var(--color-primary-white);
+    path {
+      fill: var(--color-menu-haightlight);
+    }
+  }
+}

@@ -1,0 +1,41 @@
+:host {
+  display: inline-flex;
+}
+
+.toggle-btn {
+  position: relative;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-primary);
+  &__switch {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    background-color: var(--color-primary);
+    border-radius: var(--border-radius);
+    transition: all 0.3s ease-in-out;
+    &--active {
+      left: 0;
+    }
+  }
+  &__label {
+    position: relative;
+    width: 50%;
+    font-size: 1em;
+    font-weight: 600;
+    color: var(--color-primary);
+    padding: 10px 20px;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    z-index: 1;
+    &--active {
+      color: var(--color-primary-white);
+    }
+  }
+}

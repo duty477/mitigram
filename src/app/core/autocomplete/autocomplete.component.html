@@ -1,0 +1,17 @@
+<div class="input" matAutocompleteOrigin #origin="matAutocompleteOrigin">
+  <label>
+    <span class="input__label">{{label}}</span>
+    <input type="text"
+           matInput
+           [formControl]="control"
+           [placeholder]="placeholder"
+           [name]="name"
+           [matAutocomplete]="auto"
+           [matAutocompleteConnectedTo]="origin">
+  </label>
+</div>
+<mat-autocomplete #auto="matAutocomplete" (optionSelected)="getSelection($event.option.value)">
+  <mat-option *ngFor="let option of filteredOptions$ | async" [value]="option">
+    {{ option }}
+  </mat-option>
+</mat-autocomplete>

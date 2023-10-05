@@ -1,0 +1,6 @@
+<button type="button" class="btn" *ngIf="isButton" [ngClass]="modifier" [disabled]="disabled">
+  {{label}}
+</button>
+<a [routerLink]="url" class="btn" *ngIf="!isButton" [ngClass]="modifier">
+  {{label}}
+</a>

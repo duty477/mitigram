@@ -1,0 +1,11 @@
+<div class="modal-content alert" [ngClass]="data.type">
+  <h3>{{ data.title }}</h3>
+  <p>{{ data.message }}</p>
+  <p *ngIf="data.additionalData"><b>{{data.additionalData}}</b></p>
+  <ul *ngIf="data.emails">
+    <li *ngFor="let email of data.emails">{{ email }}</li>
+  </ul>
+  <div class="modal-content__actions">
+    <app-button label="OK" (click)="closeModal()"></app-button>
+  </div>
+</div>

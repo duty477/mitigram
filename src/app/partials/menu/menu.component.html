@@ -1,0 +1,10 @@
+<nav class="menu">
+  <a routerLink="/" class="menu__logo">
+    <svg-icon src="assets/svg/logo.svg"></svg-icon>
+  </a>
+  <ul class="custom-styled">
+    <li *ngFor="let menu of menuItems">
+      <app-cta [menu]="menu" [active]="router.url === menu.url"></app-cta>
+    </li>
+  </ul>
+</nav>

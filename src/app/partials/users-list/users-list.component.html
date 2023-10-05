@@ -1,0 +1,82 @@
+<div class="filters">
+  <div class="filters__header">
+    <h2>Filters</h2>
+  </div>
+  <div class="filters__row">
+    <div class="filters__col">
+      <app-input label="First name" name="name" [(model)]="nameFilterQuery" placeholder="Jhon..."></app-input>
+    </div>
+    <div class="filters__col">
+      <app-input label="Last name" name="lastname" [(model)]="lastNameFilterQuery" placeholder="Doe..."></app-input>
+    </div>
+    <div class="filters__col">
+      <app-input label="E-mail" name="email" [(model)]="emailFilterQuery" placeholder="jhondoe@gmail.com"></app-input>
+    </div>
+    <div class="filters__col">
+      <app-input label="Phone" name="phone" [(model)]="phoneFilterQuery" placeholder="+1 (111) 111..."></app-input>
+    </div>
+    <div class="filters__col">
+      <app-autocomplete label="Groups" name="groups" [options]="uniqueGroups" placeholder="Pick one" (modelChange)="getGroupSelection($event)"></app-autocomplete>
+    </div>
+  </div>
+</div>
+<div class="table-wrap">
+  <div class="table"
+       *ngIf="(users | filterUsers:nameFilterQuery:lastNameFilterQuery:emailFilterQuery:phoneFilterQuery:groupsFilterQuery).length"
+       [@fadeInOut]="'in'">
+    <table>
+      <thead>
+      <tr>
+        <th>
+          <app-checkbox [(model)]="selectAll" (change)="selectAllUsers()"></app-checkbox>
+        </th>
+        <th class="sort" (click)="sortUsersByName()">
+          <div class="sort-btn">
+            Name
+            <svg-icon *ngIf="sortByName.asc" class="up" src="assets/svg/expand_less.svg"></svg-icon>
+            <svg-icon *ngIf="sortByName.desc" class="down" src="assets/svg/expand_more.svg"></svg-icon>
+          </div>
+        </th>
+        <th class="sort" (click)="sortUsersByCompany()">
+          <div class="sort-btn">
+            Company
+            <svg-icon *ngIf="sortByCompany.asc" class="up" src="assets/svg/expand_less.svg"></svg-icon>
+            <svg-icon *ngIf="sortByCompany.desc" class="down" src="assets/svg/expand_more.svg"></svg-icon>
+          </div>
+        </th>
+        <th class="sort" (click)="sortUsersByEmail()">
+          <div class="sort-btn">
+            E-mail
+            <svg-icon *ngIf="sortByEmail.asc" class="up" src="assets/svg/expand_less.svg"></svg-icon>
+            <svg-icon *ngIf="sortByEmail.desc" class="down" src="assets/svg/expand_more.svg"></svg-icon>
+          </div>
+        </th>
+        <th>Phone</th>
+        <th>Groups</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr
+        *ngFor="let user of (users | filterUsers:nameFilterQuery:lastNameFilterQuery:emailFilterQuery:phoneFilterQuery:groupsFilterQuery:sortFunction)"
+        (click)="selectSingleUser(user)" [class.active]="user.selected">
+        <td>
+          <app-checkbox [(model)]="user.selected" (change)="selectSingleUserDetector()"></app-checkbox>
+        </td>
+        <td class="name">{{user.name.first}}<br/>{{user.name.last}}</td>
+        <td class="company">{{user.company}}</td>
+        <td class="email">{{user.email}}</td>
+        <td class="phone">{{user.phone}}</td>
+        <td class="groups">
+          <ul>
+            <li *ngFor="let group of user.groups">{{group}}</li>
+          </ul>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <app-empty-list
+    *ngIf="!(users | filterUsers:nameFilterQuery:lastNameFilterQuery:emailFilterQuery:phoneFilterQuery:groupsFilterQuery).length"
+    [@fadeInOut]="'in'"></app-empty-list>
+</div>
+

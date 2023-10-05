@@ -1,0 +1,20 @@
+<div class="modal-content">
+  <h3>{{data.title}}</h3>
+  <p>{{data.message}}</p>
+  <div class="modal-content__form">
+    <form #emailForm="ngForm" novalidate>
+      <div class="input" *ngFor="let email of emailsList; let i = index">
+        <input type="email" name="email{{i}}" placeholder="Add e-mail" [(ngModel)]="emailsList[i]" required email />
+        <app-button class="mw" (click)="removeEmail(i)" label="Remove" modifier="btn--delete"></app-button>
+      </div>
+      <div class="input">
+        <input type="email" name="newEmail" placeholder="Add another e-mail" #newEmailInput ngModel #newEmailModel="ngModel" required email />
+        <app-button class="mw" (click)="addEmail(newEmailInput, newEmailModel)" label="Add"></app-button>
+      </div>
+    </form>
+  </div>
+  <div class="modal-content__actions">
+    <app-button label="Submit" (click)="submit(emailForm)"></app-button>
+    <app-button label="Cancel" (click)="cancel()" modifier="btn--secondary"></app-button>
+  </div>
+</div>

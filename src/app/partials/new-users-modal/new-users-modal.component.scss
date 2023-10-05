@@ -1,0 +1,12 @@
+.input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  input {
+    width: calc(100% - 140px);
+  }
+  app-button {
+    width: 120px;
+    margin-left: 20px;
+  }
+}

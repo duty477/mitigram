@@ -1,0 +1,28 @@
+<div class="home-page">
+  <div class="home-page__nav">
+    <div class="container">
+      <div class="home-page__row">
+        <div class="logo">
+          <svg-icon src="assets/svg/logo.svg"></svg-icon>
+        </div>
+        <div class="app-btn-wrap">
+          <app-button [isButton]="false" label="Sign up" url="/dashboard"
+                      modifier="btn--shadow"></app-button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="home-page__content">
+    <div class="container">
+      <div class="home-page__desc">
+        <h1>
+          Mitigram. The leading digital platform for global trade financing. See how seamless your trade could be with
+          the best possible access and execution.
+        </h1>
+        <app-button [isButton]="false" label="Sign up" url="/dashboard"
+                    modifier="btn--shadow"></app-button>
+      </div>
+    </div>
+  </section>
+  <section #rendererWrapper class="three-scene"></section>
+</div>
