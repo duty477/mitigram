@@ -196,17 +196,18 @@ input[type="number"] {
 
   &__content {
     width: 100%;
+  }
+}
+@include media_sm {
+  .page {
+    padding-top: 110px;
+    min-height: 100svh;
     &__actions {
       position: fixed;
       top: 40px;
       right: 40px;
       z-index: 10;
     }
-  }
-}
-@include media_sm {
-  .page {
-    min-height: 100svh;
   }
 }
 
