@@ -61,8 +61,11 @@ export class UserService {
     const deletedUsers: User[] = [];
 
     for (const user of users) {
-      existingUsers.splice(existingUsers.indexOf(user), 1);
-      deletedUsers.push(user);
+      const index = existingUsers.findIndex((existingUser: User) => existingUser.id === user.id);
+      if (index !== -1) {
+        existingUsers.splice(index, 1);
+        deletedUsers.push(user);
+      }
     }
 
     try {
