@@ -171,6 +171,7 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
+///page layout
 .page {
   padding: 40px 0;
   min-height: 100vh;
@@ -186,7 +187,7 @@ input[type="number"] {
     top: 40px;
     right: 0;
     margin-left: auto;
-    z-index: 1;
+    z-index: 10;
 
     app-button {
       margin-left: 10px;
@@ -195,6 +196,17 @@ input[type="number"] {
 
   &__content {
     width: 100%;
+    &__actions {
+      position: fixed;
+      top: 40px;
+      right: 40px;
+      z-index: 10;
+    }
+  }
+}
+@include media_sm {
+  .page {
+    min-height: 100svh;
   }
 }
 

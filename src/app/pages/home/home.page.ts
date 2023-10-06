@@ -191,6 +191,7 @@ export class HomePage implements AfterViewInit {
   ///events
   @HostListener('window:resize') onResize(): void {
     this.camera.updateProjectionMatrix();
+    console.log(window.innerWidth, window.innerHeight);
     this.renderer.setSize(window.innerWidth, window.innerHeight);
   }
 
