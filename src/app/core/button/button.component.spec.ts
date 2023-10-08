@@ -1,7 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component } from '@angular/core';
-import { By } from '@angular/platform-browser';
-import { ButtonComponent } from './button.component';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {Component} from '@angular/core';
+import {By} from '@angular/platform-browser';
+import {ButtonComponent} from './button.component';
 import {RouterTestingModule} from "@angular/router/testing";
 
 @Component({

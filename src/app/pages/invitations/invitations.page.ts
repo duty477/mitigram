@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {User} from "../../models/user.model";
 import {UserService} from "../../services/user.service";
 import {AlertModalService} from "../../services/alert-modal.service";
@@ -19,18 +19,25 @@ export class InvitationsPage implements OnInit {
     message: 'Please select at least one user to continue',
     type: 'warning'
   }
+  windowWidth = window.innerWidth;
 
   constructor(
     private userService: UserService,
     private alertModalService: AlertModalService,
     private emailsListModalService: EmailsListModalService,
-  ) { }
+  ) {
+  }
 
+  /**
+   * Initializes the component when it is first created by calling getAllUsers().
+   */
   ngOnInit() {
     this.getAllUsers();
   }
 
-  ///get all active users
+  /**
+   *get all active users
+   */
   getAllUsers(): void {
     this.userService.contractors.subscribe((users: User[]) => {
       this.users = users;
@@ -38,22 +45,31 @@ export class InvitationsPage implements OnInit {
     });
   }
 
-  ///get selected users
+  /**
+   * Sets the selected users based on the provided array of User objects.
+   */
   getSelectedUsers(selectedUsers: User[]): void {
     this.selectedUsers = selectedUsers;
   }
 
-  ///events
+  ///EVENTS
+
+  /**
+   * Handles the deletion of selected users.
+   */
   deleteUsers(): void {
-    if(this.selectedUsers.length){
+    if (this.selectedUsers.length) {
       this.emailsListModalService.openEmailsListModal({
         title: 'Selected users',
         message: 'Please confirm that you want to remove the following users',
         emails: this.selectedUsers.map((user: User) => user.email),
       }).then((result: boolean) => {
-        if(result){
-          this.userService.deleteUsers(this.selectedUsers).subscribe((response: { success: boolean, deletedUsers: User[] }) => {
-            if(response.success){
+        if (result) {
+          this.userService.deleteUsers(this.selectedUsers).subscribe((response: {
+            success: boolean,
+            deletedUsers: User[]
+          }) => {
+            if (response.success) {
               this.alertModalData = {
                 title: 'Users deleted',
                 message: 'The selected users have been deleted successfully',
@@ -62,8 +78,9 @@ export class InvitationsPage implements OnInit {
                 type: 'success'
               }
               this.alertModalService.openAlertModal(this.alertModalData);
-              this.getAllUsers();
-            }else {
+              this.getAllUsers(); ///get all users form local storage
+              this.selectedUsers = []; ///empty selected users
+            } else {
               this.alertModalData = {
                 title: 'Error',
                 message: 'An error occurred while deleting the selected users',
@@ -74,8 +91,20 @@ export class InvitationsPage implements OnInit {
           });
         }
       });
-    }else {
+    } else {
+      this.alertModalData = {
+        title: 'No users selected',
+        message: 'Please select at least one user to continue',
+        type: 'warning'
+      }
       this.alertModalService.openAlertModal(this.alertModalData);
     }
+  }
+
+  /**
+   *Listens for the window resize event and updates the windowWidth property.
+   */
+  @HostListener('window:resize') onResize(): void {
+    this.windowWidth = window.innerWidth;
   }
 }

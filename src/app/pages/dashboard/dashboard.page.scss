@@ -1,16 +1,22 @@
+@use 'src/assets/css/mixins/mixins' as *;
+
 :host {
   display: block;
 }
+
 .dashboard {
   &__header {
     margin-bottom: 50px;
+
     h1 {
       margin-bottom: 0.5em;
     }
+
     p {
       margin: 0;
     }
   }
+
   &__box {
     padding: 20px;
     background-color: var(--color-bg-grey);
@@ -19,32 +25,56 @@
     margin-bottom: 60px;
     min-height: 300px;
     overflow: hidden;
+
     &:last-child {
       margin-bottom: 0;
     }
+
     &__header {
       display: flex;
       justify-content: space-between;
+
       &__right {
         display: flex;
         align-items: flex-start;
         justify-content: flex-end;
         flex-wrap: wrap;
         max-width: 50%;
+
         app-button {
           margin-left: 10px;
           margin-bottom: 10px;
         }
       }
     }
+
     &__content {
       padding-top: 30px;
     }
+
     h2 {
       margin-bottom: 0.5em;
     }
+
     p {
       margin: 0;
+    }
+  }
+}
+
+@include media_xs {
+  .dashboard {
+    overflow-x: hidden;
+
+    &__header {
+      margin-bottom: 40px;
+    }
+
+    &__box {
+      overflow: visible;
+      margin-bottom: 40px;
+      padding-left: 10px;
+      padding-right: 10px;
     }
   }
 }

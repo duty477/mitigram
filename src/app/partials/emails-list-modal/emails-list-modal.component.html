@@ -6,6 +6,7 @@
   </ul>
   <div class="modal-content__actions">
     <app-button *ngIf="!data.disabledSubmitBtn" label="Submit" (click)="submit()"></app-button>
-    <app-button [label]="data.disabledSubmitBtn ? 'OK' : 'Cancel'" (click)="cancel()" [modifier]="data.disabledSubmitBtn ? '' : 'btn--secondary'"></app-button>
+    <app-button [label]="data.disabledSubmitBtn ? 'OK' : 'Cancel'" (click)="cancel()"
+                [modifier]="data.disabledSubmitBtn ? '' : 'btn--secondary'"></app-button>
   </div>
 </div>

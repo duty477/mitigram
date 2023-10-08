@@ -3,8 +3,8 @@ import {Component, DebugElement} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import {CheckboxComponent} from './checkbox.component';
-import { HttpClientModule } from '@angular/common/http';
-import { SvgIconComponent, provideAngularSvgIcon } from 'angular-svg-icon';
+import {HttpClientModule} from '@angular/common/http';
+import {SvgIconComponent, provideAngularSvgIcon} from 'angular-svg-icon';
 
 @Component({
   template: `

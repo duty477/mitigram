@@ -33,6 +33,7 @@ import {ToggleBtnComponent} from './core/toggle-btn/toggle-btn.component';
 import {AutocompleteComponent} from "./core/autocomplete/autocomplete.component";
 import {NewUsersModalComponent} from './partials/new-users-modal/new-users-modal.component';
 import {HomePage} from './pages/home/home.page';
+import {ButtonIconComponent} from './core/button-icon/button-icon.component';
 
 const playerFactory = () => player;
 
@@ -58,7 +59,8 @@ const playerFactory = () => player;
     ToggleBtnComponent,
     NewUsersModalComponent,
     AutocompleteComponent,
-    HomePage
+    HomePage,
+    ButtonIconComponent
   ],
   imports: [
     BrowserModule,

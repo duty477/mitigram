@@ -5,6 +5,7 @@ import fragmentShader from '../../utils/glsl/background/fragment.glsl';
 import vertexShader from '../../utils/glsl/background/vertex.glsl';
 import fragmentShaderPoints from '../../utils/glsl/points/fragment.glsl';
 import vertexShaderPoints from '../../utils/glsl/points/vertex.glsl';
+import vertexShaderGlobe from '../../utils/glsl/points/vertexGlobe.glsl';
 
 @Component({
   selector: 'app-home',
@@ -28,10 +29,17 @@ export class HomePage implements AfterViewInit {
   private materialBg?: THREE.ShaderMaterial;
   private meshObjectBg?: THREE.Mesh;
 
+  ///points
   private geometryBgPoints?: THREE.BufferGeometry;
   private materialBgPoints?: THREE.ShaderMaterial;
   private meshObjectBgPoints?: THREE.Points;
   private numberOfElementsBg: number = 1500;
+
+  ///globe
+  private geometryGlobe?: THREE.BufferGeometry;
+  private materialGlobe?: THREE.ShaderMaterial;
+  private meshGlobe?: THREE.Points;
+
 
   ngAfterViewInit() {
     this.init();
@@ -129,7 +137,7 @@ export class HomePage implements AfterViewInit {
       uniforms: {
         u_color1: {value: new THREE.Vector3(0, 0.7804, 0.9843)},
         u_color2: {value: new THREE.Vector3(0.2745, 0.3529, 0.7961)},
-        u_range: {value: new THREE.Vector3(0.5, 0.5, 0.5)},
+        u_range: {value: new THREE.Vector3(0.8, 0.8, 0.8)},
         u_speed: {value: 0.12},
         u_size: {value: 3},
         u_pr: {value: 1.6251},
@@ -179,6 +187,7 @@ export class HomePage implements AfterViewInit {
       this.materialBgPoints.uniforms['u_time'].value = this.clock.getElapsedTime() * 0.5;
     }
   }
+
 
   ///global animations
   private animate(): void {

@@ -1,0 +1,6 @@
+<button type="button" class="btn-icon" *ngIf="!url" [ngClass]="modifier">
+  <svg-icon *ngIf="icon" [src]="icon"></svg-icon>
+</button>
+<a *ngIf="url" [routerLink]="url" class="btn-icon" [ngClass]="modifier">
+  <svg-icon *ngIf="icon" [src]="icon"></svg-icon>
+</a>

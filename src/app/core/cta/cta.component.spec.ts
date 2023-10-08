@@ -71,7 +71,7 @@ describe('CtaComponent', () => {
 
   it('should not display the menu item icon when not available', () => {
     ctaElement = fixture.debugElement.query(By.css('.cta')).nativeElement;
-    if(testHost.menu)
+    if (testHost.menu)
       testHost.menu.icon = '';
     fixture.detectChanges();
     const iconElement = ctaElement.querySelector('svg-icon');

@@ -4,12 +4,19 @@
   <div class="modal-content__form">
     <form #emailForm="ngForm" novalidate>
       <div class="input" *ngFor="let email of emailsList; let i = index">
-        <input type="email" name="email{{i}}" placeholder="Add e-mail" [(ngModel)]="emailsList[i]" required email />
-        <app-button class="mw" (click)="removeEmail(i)" label="Remove" modifier="btn--delete"></app-button>
+        <input type="email" name="email{{i}}" placeholder="Add e-mail" [(ngModel)]="emailsList[i]" required email/>
+        <app-button class="mw" (click)="removeEmail(i)" label="Remove" modifier="btn--delete"
+                    *ngIf="windowWidth > 767"></app-button>
+        <app-button-icon icon="assets/svg/delete.svg" (click)="removeEmail(i)" modifier="btn-icon--delete"
+                         *ngIf="windowWidth < 768"></app-button-icon>
       </div>
       <div class="input">
-        <input type="email" name="newEmail" placeholder="Add another e-mail" #newEmailInput ngModel #newEmailModel="ngModel" required email />
-        <app-button class="mw" (click)="addEmail(newEmailInput, newEmailModel)" label="Add"></app-button>
+        <input type="email" name="newEmail" placeholder="Add another e-mail" #newEmailInput ngModel
+               #newEmailModel="ngModel" required email/>
+        <app-button class="mw" (click)="addEmail(newEmailInput, newEmailModel)" label="Add"
+                    *ngIf="windowWidth > 767"></app-button>
+        <app-button-icon icon="assets/svg/add.svg" (click)="addEmail(newEmailInput, newEmailModel)"
+                         *ngIf="windowWidth < 768"></app-button-icon>
       </div>
     </form>
   </div>

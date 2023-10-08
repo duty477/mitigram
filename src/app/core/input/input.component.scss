@@ -19,6 +19,7 @@
     border-radius: var(--border-radius);
     border: 2px solid var(--color-primary);
     padding: 10px;
+
     &.ng-invalid.ng-touched {
       border-color: var(--color-primary-red);
     }

@@ -14,10 +14,16 @@ export class EmailsListModalComponent {
   ) {
   }
 
+  /**
+   * Cancels or rejects the current dialog or modal by closing it with a 'false' result.
+   */
   cancel(): void {
     this.dialogRef.close(false);
   }
 
+  /**
+   * Submits or accepts the current dialog or modal by closing it with a 'true' result.
+   */
   submit(): void {
     this.dialogRef.close(true);
   }

@@ -9,13 +9,16 @@
   min-height: 55vh;
   text-align: center;
   $self: &;
+
   &__anim {
     display: block;
     width: 300px;
     margin: 0 auto;
   }
+
   &--small {
     min-height: auto;
+
     #{$self}__anim {
       width: 250px;
     }

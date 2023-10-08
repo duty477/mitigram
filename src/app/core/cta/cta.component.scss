@@ -13,17 +13,22 @@
   padding: 10px;
   border-radius: 10px;
   transition: opacity 0.3s ease-in-out;
+  text-decoration: none;
+
   svg-icon {
     width: 35px;
     height: 35px;
   }
+
   svg {
     height: 100%;
   }
+
   path {
     fill: var(--color-primary-white);
     transition: fill 0.3s ease-in-out;
   }
+
   &__label {
     color: var(--color-menu-labels);
     background-color: var(--color-menu-haightlight);
@@ -40,6 +45,7 @@
     box-shadow: var(--box-shadow-primary);
     transition: all 0.3s ease-in-out;
   }
+
   @include hover {
     background-color: var(--color-primary-white);
     path {
@@ -50,10 +56,46 @@
       transform: translate(0, -50%);
     }
   }
+
   &--active {
     background-color: var(--color-primary-white);
+
     path {
       fill: var(--color-menu-haightlight);
+    }
+  }
+}
+
+@include media_sm {
+  .cta {
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    padding: 0;
+    $self: &;
+
+    &__label {
+      position: relative;
+      top: 0;
+      left: 0;
+      opacity: 1;
+      transform: translate(0);
+      background-color: transparent;
+      box-shadow: none;
+      font-size: 1.2em;
+    }
+
+    &--active {
+      color: var(--color-primary);
+      background-color: transparent;
+
+      path {
+        fill: var(--color-primary);
+      }
+
+      #{$self}__label {
+        color: var(--color-primary);
+      }
     }
   }
 }

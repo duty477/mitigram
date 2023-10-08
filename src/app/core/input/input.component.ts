@@ -13,7 +13,11 @@ export class InputComponent {
   @Input() name = '';
   @Output() modelChange: EventEmitter<string> = new EventEmitter<string>();
 
+  /**
+   * Updates the model value and emits the updated value.
+   * @param {string} value - The new value to set for the model.
+   */
   changeModel(value: string): void {
-    this.modelChange.emit(this.model);
+    this.modelChange.emit(value);
   }
 }

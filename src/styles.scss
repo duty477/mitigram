@@ -171,6 +171,33 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
+@include media_xs {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: 0.5em;
+  }
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1.6em;
+  }
+
+  h3 {
+    font-size: 1.4em;
+  }
+
+  p {
+    font-size: 1em;
+    font-weight: 500;
+  }
+}
+
 ///page layout
 .page {
   padding: 40px 0;
@@ -198,15 +225,31 @@ input[type="number"] {
     width: 100%;
   }
 }
+
 @include media_sm {
   .page {
     padding-top: 110px;
     min-height: 100svh;
+
     &__actions {
       position: fixed;
       top: 40px;
       right: 40px;
-      z-index: 10;
+    }
+  }
+}
+
+@include media_xs {
+  .page {
+    &__actions {
+      top: 20px;
+      right: 20px;
+      width: calc(100% - 40px);
+      display: flex;
+      justify-content: flex-end;
+      app-button-icon {
+        margin-left: 10px;
+      }
     }
   }
 }
@@ -292,7 +335,6 @@ input[type="number"] {
 
 .swiper {
   overflow: visible;
-
   .swiper-slide {
     width: auto;
   }

@@ -4,8 +4,14 @@
       <h1>Invitations</h1>
     </div>
     <div class="page__actions">
-      <app-button [isButton]="false" label="Add new contractors" url="/address-book" modifier="btn--shadow"></app-button>
-      <app-button label="Delete contractors" modifier="btn--delete btn--shadow" (click)="deleteUsers()"></app-button>
+      <app-button [isButton]="false" label="Add new contractors" url="/address-book" modifier="btn--shadow"
+                  *ngIf="windowWidth > 767"></app-button>
+      <app-button label="Delete contractors" modifier="btn--delete btn--shadow" (click)="deleteUsers()"
+                  *ngIf="windowWidth > 767"></app-button>
+      <app-button-icon url="/address-book" icon="assets/svg/add.svg" modifier="btn-icon--shadow"
+                       *ngIf="windowWidth <= 767"></app-button-icon>
+      <app-button-icon (click)="deleteUsers()" icon="assets/svg/delete.svg" modifier="btn-icon--delete btn-icon--shadow"
+                       *ngIf="windowWidth <= 767"></app-button-icon>
     </div>
     <div class="page__content">
       <app-users-list [users]="users" (selectedUsers)="getSelectedUsers($event)"></app-users-list>

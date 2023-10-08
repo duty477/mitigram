@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {User, UserConstructor} from "../../models/user.model";
 import {UserService} from "../../services/user.service";
 import {AlertModalService} from "../../services/alert-modal.service";
@@ -23,6 +23,7 @@ export class AddressBookPage implements OnInit {
     title: 'Add new users',
     message: 'Please enter the email addresses of the users you want to add',
   }
+  windowWidth = window.innerWidth;
 
   constructor(
     private userService: UserService,
@@ -31,6 +32,10 @@ export class AddressBookPage implements OnInit {
   ) {
   }
 
+  /**
+   * Initializes the component when it is first created.
+   * Subscribes to the 'users' observable from the UserService and updates the users array.
+   */
   ngOnInit(): void {
     this.userService.users.subscribe((users: User[]) => {
       this.users = users;
@@ -38,12 +43,18 @@ export class AddressBookPage implements OnInit {
     });
   }
 
-  ///get selected users
+  /**
+   * Gets selected users and sets 'selected' property to 'false' for each user.
+   */
   getSelectedUsers(selectedUsers: User[]): void {
     this.selectedUsers = selectedUsers.map(user => ({...user, selected: false}));
   }
 
   ///events
+
+  /**
+   * Subscribes to selected users and updates the address book with the selected users.
+   */
   subscribeSelectedUsers(): void {
     this.userService.setContractors(this.selectedUsers).subscribe((result: {
       success: boolean,
@@ -65,6 +76,7 @@ export class AddressBookPage implements OnInit {
             type: 'success'
           });
         }
+        this.selectedUsers = []; ///empty selected users
       } else {
         this.alertModalService.openAlertModal({
           title: 'Error',
@@ -79,6 +91,9 @@ export class AddressBookPage implements OnInit {
     });
   }
 
+  /**
+   * Handles the submission of selected users.
+   */
   submitUsers(): void {
     if (this.selectedUsers.length) {
       this.emailsListModalService.openEmailsListModal({
@@ -95,15 +110,18 @@ export class AddressBookPage implements OnInit {
     }
   }
 
+  /**
+   * Adds new users based on the selected emails.
+   */
   addNewUsers(): void {
     this.emailsListModalService.openNewUsersModal(this.newUsersModalData).then((emails: boolean | string[]) => {
-      if(Array.isArray(emails)){
+      if (Array.isArray(emails)) {
         this.emailsListModalService.openEmailsListModal({
           title: 'Selected users',
           message: 'Please confirm the following users to continue',
           emails: emails,
         }).then((result: boolean) => {
-          if(result){
+          if (result) {
             for (const email of emails) {
               const userData: UserConstructor = {
                 id: '',
@@ -125,5 +143,12 @@ export class AddressBookPage implements OnInit {
         });
       }
     });
+  }
+
+  /**
+   / Listens for the window resize event and updates the windowWidth property.
+   */
+  @HostListener('window:resize') onResize(): void {
+    this.windowWidth = window.innerWidth;
   }
 }

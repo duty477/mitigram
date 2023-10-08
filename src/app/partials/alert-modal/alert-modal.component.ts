@@ -14,6 +14,9 @@ export class AlertModalComponent {
   ) {
   }
 
+  /**
+   * Closes the current dialog or modal.
+   */
   closeModal(): void {
     this.dialogRef.close();
   }

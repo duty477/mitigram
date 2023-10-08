@@ -14,10 +14,18 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
+  /**
+   * Retrieves a list of users from the API.
+   * @returns {Observable<User[]>} - An observable of user data.
+   */
   get users(): Observable<User[]> {
     return this.http.get<User[]>(this.usersUrl);
   }
 
+  /**
+   * Retrieves a list of contractors from local storage.
+   * @returns {Observable<User[]>} - An observable of contractor data.
+   */
   get contractors(): Observable<User[]> {
     const contractorsJSON = localStorage.getItem('contractors');
     if (contractorsJSON) {
@@ -34,6 +42,11 @@ export class UserService {
     }
   }
 
+  /**
+   * Sets contractors in local storage and returns success status and existing users.
+   * @param {User[]} users - The list of users to set as contractors.
+   * @returns {Observable<{ success: boolean, existingUsers: User[] }>} - An observable with success status and existing users.
+   */
   setContractors(users: User[]): Observable<{ success: boolean, existingUsers: User[] }> {
     const existingInvitationsJSON = localStorage.getItem('contractors');
     const existingUsers = existingInvitationsJSON ? JSON.parse(existingInvitationsJSON) : [];
@@ -55,6 +68,11 @@ export class UserService {
     }
   }
 
+  /**
+   * Deletes selected users from contractors in local storage.
+   * @param {User[]} users - The list of users to delete.
+   * @returns {Observable<{ success: boolean, deletedUsers: User[] }>} - An observable with success status and deleted users.
+   */
   deleteUsers(users: User[]): Observable<{ success: boolean, deletedUsers: User[] }> {
     const existingUsersJSON = localStorage.getItem('contractors');
     const existingUsers = existingUsersJSON ? JSON.parse(existingUsersJSON) : [];
@@ -76,10 +94,20 @@ export class UserService {
     }
   }
 
+  /**
+   * Sets the selectAllSubject's value to control the select all behavior.
+   * @param {boolean} selectAll - The new selectAll value.
+   */
   setSelectAll(selectAll: boolean): void {
     this.selectAllSubject.next(selectAll);
   }
 
+  /**
+   * Checks if a user exists in the list of existing users.
+   * @param {User} user - The user to check.
+   * @param {User[]} existingUsers - The list of existing users.
+   * @returns {boolean} - True if the user exists, otherwise false.
+   */
   private userExists(user: User, existingUsers: User[]): boolean {
     return existingUsers.some((existingUser: User) => {
       return existingUser.id === user.id && existingUser.email === user.email;

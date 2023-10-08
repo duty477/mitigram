@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {Notification} from "../../models/notification.model";
 import {User} from "../../models/user.model";
 import {UserService} from "../../services/user.service";
@@ -16,11 +16,18 @@ export class DashboardPage implements OnInit {
   contractors: User[] = [];
   name = 'John';
   swiperConfig: SwiperOptions = {
-    slidesPerView: 'auto',
-    spaceBetween: 50,
+    slidesPerView: 1,
+    spaceBetween: 20,
     freeMode: true,
-    grabCursor: true
+    grabCursor: true,
+    breakpoints: {
+      768: {
+        spaceBetween: 50,
+        slidesPerView: 'auto',
+      }
+    }
   };
+  windowWidth = window.innerWidth;
 
   constructor(
     private userService: UserService,
@@ -28,6 +35,11 @@ export class DashboardPage implements OnInit {
   ) {
   }
 
+  /**
+   * Initializes the component when it is first created.
+   * Subscribes to the 'contractors' observable from the UserService and updates the contractors array.
+   * Subscribes to the 'notifications' observable from the NotificationService and updates the notifications array.
+   */
   ngOnInit(): void {
     this.userService.contractors.subscribe((users: User[]) => {
       this.contractors = users;
@@ -36,5 +48,12 @@ export class DashboardPage implements OnInit {
     this.notificationService.notifications.subscribe((notifications: Notification[]) => {
       this.notifications = notifications;
     });
+  }
+
+  /**
+   * Listens for the window resize event and updates the windowWidth property.
+   */
+  @HostListener('window:resize') onResize(): void {
+    this.windowWidth = window.innerWidth;
   }
 }

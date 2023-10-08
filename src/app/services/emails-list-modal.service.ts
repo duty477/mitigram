@@ -14,6 +14,11 @@ export class EmailsListModalService {
   constructor(private dialog: MatDialog) {
   }
 
+  /**
+   * Opens an email list modal dialog.
+   * @param {EmailsListData} data - The data to pass to the modal.
+   * @returns {Promise<boolean>} - A promise that resolves with a boolean result.
+   */
   openEmailsListModal(data: EmailsListData): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
       this.dialogRef = this.dialog.open(EmailsListModalComponent, {
@@ -28,6 +33,11 @@ export class EmailsListModalService {
     });
   }
 
+  /**
+   * Opens a new users modal dialog.
+   * @param {NewUsersModalData} data - The data to pass to the modal.
+   * @returns {Promise<boolean|string[]>} - A promise that resolves with a boolean or a string array result.
+   */
   openNewUsersModal(data: NewUsersModalData): Promise<boolean | string[]> {
     return new Promise<boolean | string[]>((resolve, reject) => {
       this.dialogRefAddEmails = this.dialog.open(NewUsersModalComponent, {

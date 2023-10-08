@@ -5,10 +5,14 @@
       <p>Welcome <b>{{name}}</b></p>
     </div>
     <div class="page__actions">
-      <app-button [isButton]="false" label="Add new contractors" url="/address-book"
+      <app-button [isButton]="false" label="Add new contractors" url="/address-book" *ngIf="windowWidth > 767"
                   modifier="btn--shadow"></app-button>
-      <app-button [isButton]="false" label="View all invitations" url="/invitations"
+      <app-button [isButton]="false" label="View all invitations" url="/invitations" *ngIf="windowWidth > 767"
                   modifier="btn--shadow"></app-button>
+      <app-button-icon url="/address-book" icon="assets/svg/add.svg" modifier="btn-icon--shadow"
+                       *ngIf="windowWidth <= 767"></app-button-icon>
+      <app-button-icon url="/invitations" icon="assets/svg/list.svg" modifier="btn-icon--shadow"
+                       *ngIf="windowWidth <= 767"></app-button-icon>
     </div>
     <div class="page__content">
       <div class="dashboard__box">

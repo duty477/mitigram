@@ -4,8 +4,16 @@
       <h1>Address book</h1>
     </div>
     <div class="page__actions">
-      <app-button label="Add contractors" (click)="submitUsers()" modifier="btn--shadow"></app-button>
-      <app-button label="Add contractors outside the list" (click)="addNewUsers()" modifier="btn--shadow"></app-button>
+      <app-button label="Add contractors" (click)="submitUsers()" modifier="btn--shadow"
+                  *ngIf="windowWidth > 767"></app-button>
+      <app-button label="Add contractors outside the list" (click)="addNewUsers()" modifier="btn--shadow"
+                  *ngIf="windowWidth > 767"></app-button>
+      <app-button-icon (click)="submitUsers()" icon="assets/svg/add.svg" modifier="btn-icon--shadow"
+                       *ngIf="windowWidth <= 767"></app-button-icon>
+      <app-button-icon (click)="addNewUsers()" icon="assets/svg/post_add.svg" modifier="btn-icon--shadow"
+                       *ngIf="windowWidth <= 767"></app-button-icon>
+      <app-button-icon url="/invitations" icon="assets/svg/list.svg" modifier="btn-icon--shadow"
+                       *ngIf="windowWidth <= 767"></app-button-icon>
     </div>
     <div class="page__content">
       <app-users-list [users]="users" (selectedUsers)="getSelectedUsers($event)"></app-users-list>

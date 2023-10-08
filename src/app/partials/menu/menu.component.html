@@ -1,10 +1,16 @@
-<nav class="menu">
+<button type="button" class="menu-btn" *ngIf="windowWidth <= 1024" (click)="toggleMenu()">
+  <svg-icon src="assets/svg/menu.svg"></svg-icon>
+</button>
+<nav class="menu" *ngIf="showMenu" @slideInOut>
+  <button type="button" class="menu-btn menu-btn--close" *ngIf="windowWidth <= 1024" (click)="toggleMenu()">
+    <svg-icon src="assets/svg/close.svg"></svg-icon>
+  </button>
   <a routerLink="/" class="menu__logo">
     <svg-icon src="assets/svg/logo.svg"></svg-icon>
   </a>
   <ul class="custom-styled">
     <li *ngFor="let menu of menuItems">
-      <app-cta [menu]="menu" [active]="router.url === menu.url"></app-cta>
+      <app-cta [menu]="menu" [active]="router.url === menu.url" (click)="hideMenu()"></app-cta>
     </li>
   </ul>
 </nav>

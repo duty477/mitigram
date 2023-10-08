@@ -11,7 +11,8 @@ import {CheckboxComponent} from "../../core/checkbox/checkbox.component";
 import {provideAngularSvgIcon, SvgIconComponent} from "angular-svg-icon";
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {FormsModule, NgModelGroup, ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {ButtonIconComponent} from "../../core/button-icon/button-icon.component";
 
 @Component({
   template: `
@@ -40,7 +41,7 @@ describe('UsersListComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [UsersListComponent, TestHostComponent, InputComponent, AutocompleteComponent, FilterUsersPipe, CheckboxComponent],
+      declarations: [UsersListComponent, TestHostComponent, InputComponent, AutocompleteComponent, FilterUsersPipe, CheckboxComponent, ButtonIconComponent],
       imports: [MatAutocompleteModule, HttpClientModule, SvgIconComponent, BrowserAnimationsModule, FormsModule, ReactiveFormsModule],
       providers: [provideAngularSvgIcon(), FilterUsersPipe]
     });

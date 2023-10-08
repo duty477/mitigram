@@ -54,13 +54,18 @@ describe('UsersShortListComponent', () => {
     expect(tableRows.length).toBe(1);
 
     const [tableRow] = tableRows;
-    expect(tableRow.querySelector('.name').textContent).toContain('JohnDoe');
-    expect(tableRow.querySelector('.company').textContent).toContain('Acme Inc.');
-    expect(tableRow.querySelector('.email').textContent).toContain('john.doe@example.com');
-    expect(tableRow.querySelector('.phone').textContent).toContain('+1 (123) 456-7890');
-    const groupItems = tableRow.querySelectorAll('.groups li');
-    expect(groupItems.length).toBe(1);
-    expect(groupItems[0].textContent).toContain('Group A');
+    expect(tableRow.querySelector('.name').textContent).toContain('John Doe');
+    if (window.innerWidth > 1024)
+      expect(tableRow.querySelector('.company').textContent).toContain('Acme Inc.');
+    if (window.innerWidth > 767)
+      expect(tableRow.querySelector('.email').textContent).toContain('john.doe@example.com');
+    if (window.innerWidth > 1024)
+      expect(tableRow.querySelector('.phone').textContent).toContain('+1 (123) 456-7890');
+    if (window.innerWidth > 767) {
+      const groupItems = tableRow.querySelectorAll('.groups li');
+      expect(groupItems.length).toBe(1);
+      expect(groupItems[0].textContent).toContain('Group A');
+    }
   });
 
   it('should not display a table when contractors are empty', () => {

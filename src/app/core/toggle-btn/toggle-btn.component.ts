@@ -11,6 +11,9 @@ export class ToggleBtnComponent {
   @Input() falseText = 'No';
   @Output() modelChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  /**
+   * Toggles the model value (from `true` to `false` or vice versa) and emits the updated value.
+   */
   toggleModel(): void {
     this.model = !this.model;
     this.modelChange.emit(this.model);

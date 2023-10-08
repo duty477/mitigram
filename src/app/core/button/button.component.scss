@@ -2,6 +2,7 @@
 
 :host {
   display: inline-flex;
+
   &.mw {
     .btn {
       width: 100%;
@@ -29,6 +30,7 @@
     background-color: var(--color-primary-hover);
     border-color: var(--color-primary-hover);
   }
+
   &--secondary {
     border-color: var(--color-primary-black);
     background-color: var(--color-primary-white);
@@ -38,9 +40,11 @@
       border-color: var(--color-primary-black-30);
     }
   }
+
   &--shadow {
     box-shadow: var(--box-shadow-primary);
   }
+
   &--delete {
     background-color: var(--color-primary-red);
     border-color: var(--color-primary-red);
@@ -49,6 +53,7 @@
       border-color: var(--color-primary-red-hover);
     }
   }
+
   &--white {
     border-color: var(--color-primary-white);
     background-color: var(--color-primary-white);
@@ -59,11 +64,13 @@
       border-color: var(--color-primary-hover);
     }
   }
+
   &[disabled] {
     cursor: not-allowed;
     color: var(--color-grey);
     background-color: var(--color-primary-white);
     border-color: var(--color-bg-grey);
+
     #{$self}--secondary {
       color: var(--color-grey);
       background-color: transparent;

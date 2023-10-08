@@ -1,9 +1,9 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { AutocompleteComponent } from './autocomplete.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatInputModule } from '@angular/material/input';
-import { CommonModule } from '@angular/common';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {AutocompleteComponent} from './autocomplete.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatInputModule} from '@angular/material/input';
+import {CommonModule} from '@angular/common';
 
 describe('AutocompleteComponent', () => {
   let component: AutocompleteComponent;

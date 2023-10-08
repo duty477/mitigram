@@ -12,6 +12,11 @@ export class AlertModalService {
   constructor(private dialog: MatDialog) {
   }
 
+  /**
+   * Opens an alert modal dialog.
+   * @param {AlertModalData} data - The data to pass to the modal.
+   * @returns {Promise<void>} - A promise that resolves when the modal is closed.
+   */
   openAlertModal(data: AlertModalData): Promise<void> {
     return new Promise<void>((resolve) => {
       this.dialogRef = this.dialog.open(AlertModalComponent, {
